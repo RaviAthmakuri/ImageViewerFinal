@@ -208,7 +208,7 @@ class Profile extends Component {
                     <div>
                         <Typography variant='h4' className={classes.userName} >{this.state.userName}</Typography>
                         <div className="detail-container">
-                            <Typography variant='h6' className="typo" > Posts:6</Typography>
+                            <Typography variant='h6' className="typo" > Posts:{this.state.userImages.length}</Typography>
                             <Typography variant='h6' className="typo" > Follows:100</Typography>
                             <Typography variant='h6' className="typo" > Followed by:1000</Typography>
                         </div>
