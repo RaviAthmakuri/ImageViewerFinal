@@ -63,7 +63,7 @@ class Header extends Component {
         return (
             <div>
                 <header className="app-header">
-                    Image Viewer
+                  {this.state.showSearch ?<span>Image Viewer</span>: <Link to="/home" style={{textDecoration: "none"}}><span style={{color:"white"}}>Image Viewer</span></Link>}
                 <div className="right-header-container">
                         {this.state.showSearch && <Card className="search-card">
                             <CardContent className={classes.searchCardContentStyle}>
@@ -86,7 +86,8 @@ class Header extends Component {
                             PaperProps={{
                                 style: {
                                     marginTop: "30px",
-                                    backgroundColor: '#c0c0c0'
+                                    backgroundColor: '#c0c0c0',
+                                    // padding:"1px"
                                 }
                             }}
                         // className="simplemenu1"
@@ -94,15 +95,17 @@ class Header extends Component {
 
                             {this.state.showSearch && 
                             <div style={{padding:"0px"}}>
-                            <Link to="/profile"> 
-                            <MenuItem style={{ backgroundColor: '#c0c0c0' }}>
+                            <Link to="/profile" style={{textDecoration: "none"}}> 
+                            <MenuItem style={{ backgroundColor: '#c0c0c0'}}>
                               <b>My Account</b>
                             </MenuItem>
                             </Link>
-                            <Divider />
-                            </div>
+                             </div>
                             }
-                            <Link to="/"> 
+                            {this.state.showSearch && 
+                                <Divider />
+                            }
+                            <Link to="/" style={{textDecoration: "none"}}> 
                             <MenuItem style={{ backgroundColor: '#c0c0c0' }} onClick={this.logoutHandler} >
                                 <b>Logout</b>
                             </MenuItem>

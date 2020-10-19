@@ -118,7 +118,7 @@ class Home extends Component {
         // }
         Vcomments.push(this.state.comment);
         let imageid = id.id;
-        this.setState({ commentAdded: true, comments: Vcomments ,imageId:imageidN});
+        this.setState({ commentAdded: true, comments: Vcomments ,imageId:imageid});
 
     }
 
