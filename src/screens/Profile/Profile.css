@@ -1,0 +1,48 @@
+.information-container{
+    display: flex;
+    padding-top: 5%;
+    padding-left: 5%;
+}
+.username-elem{
+padding:10px;
+height: 50px;
+margin-left: 0.25%;
+}
+
+.detail-container{
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.typo{
+    padding-top: 10px;
+    padding-left: 70px;
+    padding-right:10px;
+}
+.fullname-container{
+    display: flex;
+    margin-top: 15px;
+}
+
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
+
+.grid-container{
+    margin:100px;
+    padding-left: 150px;
+}
+.image-modalContainer{
+    display: flex;
+    height: 450px;
+
+}
+.image-header-container{
+    display: flex;
+}
