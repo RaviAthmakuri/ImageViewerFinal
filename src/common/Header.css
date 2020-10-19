@@ -1,0 +1,25 @@
+.app-header{
+    background-color: #263238;
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    padding: 8px 32px 8px 16px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.search-card{
+    margin-right:30px;
+
+}
+
+.right-header-container{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+.search-container{
+    display: flex;
+    justify-content: space-evenly;
+}
