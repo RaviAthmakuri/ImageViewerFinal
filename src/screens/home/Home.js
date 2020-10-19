@@ -34,12 +34,12 @@ class Home extends Component {
             likeCount: 9,
             commentAdded: false,
             comment: "",
-            comments: [],
+            comments: [{}],
             imageData: [{}],
             userImages: [{}],
-            imageId:"",
             imageLoaded: false,
-            search: null
+            userName:"",
+            search: null,
         }
     }
 
@@ -88,6 +88,23 @@ class Home extends Component {
         xhr.send(data);
 
 
+        let dataUserName = null;
+        let xhruserName = new XMLHttpRequest();
+
+        xhruserName.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+
+                let userName = JSON.parse(this.responseText).username;
+                that.setState({ userName: userName });
+            }
+
+        }
+
+        xhruserName.open("GET", "https://graph.instagram.com/17841401220108784?fields=username&access_token=" + token);
+        xhruserName.send(dataUserName);
+
+
+
 
     }
 
@@ -112,13 +129,13 @@ class Home extends Component {
 
     commentAddHandler = (id) => {
         let Vcomments = this.state.comments;
-        // Vomments = {
-        //     com :this.state.comment,
-        //     imageId : id.id
-        // }
-        Vcomments.push(this.state.comment);
-        let imageid = id.id;
-        this.setState({ commentAdded: true, comments: Vcomments ,imageId:imageid});
+       let  Icomments = {
+            com :this.state.comment,
+            imageId : id.id
+        }
+        //  console.log(this.state.comment);
+        Vcomments.push(Icomments);
+        this.setState({ commentAdded: true, comments: Vcomments});
 
     }
 
@@ -146,7 +163,7 @@ class Home extends Component {
                         <Card className="h-cardStyle" key={"image-" + image.id}>
                         <CardHeader
                             avatar={<Avatar alt="OnePiece" src="https://i.pinimg.com/originals/2b/be/83/2bbe83c41babaf761466774be9e52a13.png" />}
-                            title={<b>Ravi Atmakuri</b>}
+                            title={<b>{this.state.userName}</b>}
                             subheader={new Date(image.timestamp).toLocaleDateString() + " " + new Date(image.timestamp).toLocaleTimeString()}
                             className={classes.hCardHeaderStyle}
                             titleTypographyProps={{ component: "span", float: "left" }}>
@@ -166,14 +183,14 @@ class Home extends Component {
                             <br></br>
 
                             {this.state.commentAdded && this.state.comments.map(comment => (
-                                this.state.imageId === image.id ?
+                                comment.imageId == image.id ?
                                 <div>
-                                    <span><b>Ravi Atmakuri:</b><span>{this.state.comment}</span></span>
-                                </div>: " "
+                                    <span><b>Ravi Atmakuri:</b><span>{comment.com}</span></span>
+                                </div>: ""
                             
                             ))
                             }
-                            <Button variant="contained" className="addButton" color="primary" onClick={this.commentAddHandler.bind(image)} >Add</Button>
+                            <Button variant="contained" className="addButton" color="primary" onClick={this.commentAddHandler.bind(this,image)} >Add</Button>
                             <FormControl required className="formControl">
                                 <InputLabel htmlFor="comment">Add a comment</InputLabel>
                                 <Input id="comment" comment={this.state.comment} type="text" style={{ width: "271px" }} onChange={this.inputCommentHandler}></Input>

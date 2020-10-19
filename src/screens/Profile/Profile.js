@@ -70,7 +70,8 @@ class Profile extends Component {
             userImages: [{}],
             comment:"",
             comments:[],
-            commentAdded: false
+            commentAdded: false,
+            userName:""
         }
     }
 
@@ -119,7 +120,20 @@ class Profile extends Component {
         xhr.send(data);
 
 
+        let dataUserName = null;
+        let xhruserName = new XMLHttpRequest();
 
+        xhruserName.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+
+                let userName = JSON.parse(this.responseText).username;
+                that.setState({ userName: userName });
+            }
+
+        }
+
+        xhruserName.open("GET", "https://graph.instagram.com/17841401220108784?fields=username&access_token=" + token);
+        xhruserName.send(dataUserName);
     }
 
 
@@ -192,7 +206,7 @@ class Profile extends Component {
                         className={classes.large}
                     />
                     <div>
-                        <Typography variant='h4' className={classes.userName} >Ravi Atmakuri</Typography>
+                        <Typography variant='h4' className={classes.userName} >{this.state.userName}</Typography>
                         <div className="detail-container">
                             <Typography variant='h6' className="typo" > Posts:6</Typography>
                             <Typography variant='h6' className="typo" > Follows:100</Typography>
